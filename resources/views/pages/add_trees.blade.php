@@ -8,37 +8,7 @@
          <title>Locate Trees</title>
 </head>
 <body>
-    <nav class="teal lighten-2">
-    <div class="nav-wrapper container teal lighten-2">
-        <a href="/" class="brand-logo">
-            <img src="{{ asset('images/logo.png') }}" class="brand-logo" width="72" >
-        </a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="/view_trees">All Trees</a></li>
-            <li><a href="/add_trees">Add new Trees</a></li>
-            <li><div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div></li>
-        </ul>
-    </div>
-</nav>
-
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="/">Home</a></li>
-    <li><a href="/view_trees">All Trees</a></li>
-    <li><a href="/add_trees">Add new Trees</a></li>
-</ul>
-
+@include('layouts.navbar')
  
 <script>
     document.addEventListener('DOMContentLoaded', function () {

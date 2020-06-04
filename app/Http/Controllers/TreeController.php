@@ -102,4 +102,9 @@ class TreeController extends Controller
     {
         //
     }
+
+    public function view_in_map(Request $request){
+        return Tree::select('longitude','latitude')->get();
+
+    }
 }
