@@ -10,12 +10,7 @@
 <body>
 @include('layouts.navbar')
  
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelector('.sidenav');
-        var instances = M.Sidenav.init(elems, {});
-    });
-</script>
+
     <div class="container">
         
  <div class="row">

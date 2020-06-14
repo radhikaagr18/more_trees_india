@@ -1,3 +1,69 @@
+// var key = 'Your Mapbox access token from https://mapbox.com/ here';
+
+/**
+ * Elements that make up the popup.
+ */
+// var container = document.getElementById('popup');
+// var content = document.getElementById('popup-content');
+// var closer = document.getElementById('popup-closer');
+
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ */
+// var overlay = new ol.Overlay({
+//   element: container,
+//   autoPan: true,
+//   autoPanAnimation: {
+//     duration: 250
+//   }
+// });
+
+
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+// closer.onclick = function() {
+//   overlay.setPosition(undefined);
+//   closer.blur();
+//   return false;
+// };
+var url="api/view_in_map/1"
+function testAjax(handleData) {
+  $.ajax({
+    url:url,  
+    success:function(data) {
+      handleData(data); 
+    }
+  });
+}
+mapboxgl.accessToken = '<your access token here>';
+var vectorSource = new ol.source.Vector({});
+
+var features = [];
+testAjax(function(output){
+  // here you use the output
+
+for(var i=0;i<output.length;i++){
+var iconFeature = new ol.Feature({
+geometry: new ol.geom.Point(ol.proj.transform([output[i].longitude,output[i].latitude], 'EPSG:4326', 'EPSG:3857')),
+});
+// console.log(places[i][0])
+var design='./../images/tree.png'
+
+var iconStyle = new ol.style.Style({
+image: new ol.style.Icon({
+src: design,
+// color: design,
+crossOrigin: 'anonymous',
+})
+});
+iconFeature.setStyle(iconStyle);
+vectorSource.addFeature(iconFeature);
+}
+});
+// console.log(places)
 
 var view = new ol.View({
   center: [0,0],
@@ -30,44 +96,6 @@ geolocation.on('change:accuracyGeometry', function() {
   accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
 });
 
-
-
-var vectorSource = new ol.source.Vector({});
-var url="api/view_in_map/1"
-var places =""
-fetch(url)
-  .then(function(data) {
-    places=data;
-    console.log(data);
-    console.log(places)
-    })  
-//  [
-// [97.4320373,25.3440388],[96.0057831,21.9405043],  
-// [97.0337,20.7888],
-// [96.0118912,16.9101877],
-// [97.2906196,22.6239215],
-// ];
-
-var features = [];
-for (var i = 0; i < places.length; i++) {
-var iconFeature = new ol.Feature({
-geometry: new ol.geom.Point(ol.proj.transform([places[i][0].longitude, places[i][1].latitude], 'EPSG:4326', 'EPSG:3857')),
-});
-var design='./../images/tree.png'
-
-var iconStyle = new ol.style.Style({
-image: new ol.style.Icon({
-src: design,
-color: places[i][3],
-crossOrigin: 'anonymous',
-})
-});
-iconFeature.setStyle(iconStyle);
-vectorSource.addFeature(iconFeature);
-}
-
-
-
 var vectorLayer = new ol.layer.Vector({
 source: vectorSource,
 updateWhileAnimating: true,
@@ -82,9 +110,18 @@ new ol.layer.Tile({
 preload: 3,
 source: new ol.source.OSM(),
 }),
-vectorLayer,
+vectorLayer
 ],
-loadTilesWhileAnimating: true,
+loadTilesWhileAnimating: true
+// overlays:overlay
+});
+map.on('singleclick', function(evt) {
+  var coordinate = evt.coordinate;
+  var hdms = toStringHDMS(toLonLat(coordinate));
+
+  content.innerHTML = '<p>You clicked here:</p><code>' + hdms +
+      '</code>';
+  overlay.setPosition(coordinate);
 });
 
 var positionFeature = new ol.Feature();
@@ -110,8 +147,6 @@ geolocation.on('change:position', function() {
   });
   // view.center=coordinates;
   // view.zoom=10;
-  console.log(view)
-  console.log(coordinates)
   positionFeature.setGeometry(coordinates ?
     new ol.geom.Point(coordinates) : null);
 });
@@ -121,3 +156,4 @@ new ol.layer.Vector({
     features: [accuracyFeature, positionFeature]
   })
 });
+
