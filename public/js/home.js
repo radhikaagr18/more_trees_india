@@ -29,7 +29,43 @@
 //   closer.blur();
 //   return false;
 // };
-var url="api/view_in_map/1"
+
+let Mylatitude,Mylongitude;
+document.addEventListener('DOMContentLoaded', function () {
+  // // For the select tag to work
+  // var sel = document.querySelectorAll('select');
+  // var instances = M.FormSelect.init(sel, {});
+
+  // // For the popup
+  // var mods = document.querySelectorAll('.modal');
+  // var instances = M.Modal.init(mods, {
+  //     'onOpenEnd': camWorkStart
+  // });
+
+  // For the lat and long
+  status = document.getElementsByClassName('ol-popup');
+  if (!navigator.geolocation) {
+      status.innerText = 'Geolocation is not supported by your browser';
+  } else {
+      // status.innerText = 'Loca/ting…';
+      navigator.geolocation.getCurrentPosition(success, error);
+  }
+  function success(position) {
+       Mylatitude  = position.coords.latitude;
+       Mylongitude = position.coords.longitude;
+      document.getElementById('latitude').value = latitude;
+      document.getElementById('longitude').value = longitude;
+      M.updateTextFields();
+  }
+  function error() {
+      status.innerText = 'Unable to retrieve your location';
+  }
+  // For the camera
+});
+let MyCoordinate=[Mylongitude,Mylatitude]
+
+
+var url="api/view_in_map/"+user_id
 function testAjax(handleData) {
   $.ajax({
     url:url,  
@@ -78,6 +114,14 @@ var geolocation = new ol.Geolocation({
 });
 window.addEventListener('load', function() {
   geolocation.setTracking(true);
+  navigator.geolocation.getCurrentPosition(success, error);
+  function success(position) {
+       Mylatitude  = position.coords.latitude;
+       Mylongitude = position.coords.longitude;
+      // document.getElementById('latitude').value = latitude;
+      // document.getElementById('longitude').value = longitude;
+      // M.updateTextFields();
+  }
   // console.log(this.checked)
 });
 

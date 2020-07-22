@@ -14,7 +14,7 @@ class TreeController extends Controller
      */
     public function index()
     {
-        $trees = Tree::all();
+        $trees = Tree::where('user_id','=',auth()->user()->id)->get();
     	return view('pages.view_trees',compact('trees'));
     }
 
@@ -44,6 +44,7 @@ class TreeController extends Controller
             $request->photo->move(public_path('images'), $filename);
         }
         Tree::create([
+            'user_id'=>auth()->user()->id,
             'name' => $request['name'],
             'species' => $request['species'] ?? 0,
             'latitude' => $request['latitude'],
@@ -104,7 +105,8 @@ class TreeController extends Controller
     }
 
     public function view_in_map(Request $request){
-        $trees=Tree::all();
+        $id=$request['id'];
+        $trees=Tree::where('user_id','=',$id)->get();
         return $trees;
 
     }

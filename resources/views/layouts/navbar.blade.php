@@ -30,6 +30,17 @@
     <li><a href="/">Home</a></li>
     <li><a href="/view_trees">All Trees</a></li>
     <li><a href="/add_trees">Add new Trees</a></li>
+    <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                               </li>
 </ul>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -38,5 +49,6 @@
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>var user_id={{auth()->user()->id}}</script>
 @yield('navbar')
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  -->
