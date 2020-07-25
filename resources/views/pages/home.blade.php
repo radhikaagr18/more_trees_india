@@ -28,6 +28,6 @@
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div> 
-    <script type="module" src="{{url('js/home.js')}}"></script>
+    <script type="module" src="{{mix('js/home.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </body>

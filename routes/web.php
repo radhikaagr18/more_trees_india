@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {return view('pages.home');})->middleware('auth');
+Route::get('/', 'TreeController@index');
 Route::post('store', 'TreeController@store')->middleware('auth');
 Route::get('/add_trees', function () {return view('pages.add_trees');})->middleware('auth');
-Route::get('/view_trees','TreeController@index')->middleware('auth');
+Route::get('/view_trees','TreeController@show')->middleware('auth');
 // Route::get('/_trees', function () {return view('pages.add_trees');});
 
 Route::group(['prefix' => 'admin'], function () {

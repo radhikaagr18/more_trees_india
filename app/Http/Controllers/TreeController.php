@@ -7,12 +7,29 @@ use App\Tree;
 
 class TreeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     */
+    public function index()
+    {
+        $trees=Tree::where('user_id','=',auth()->user()->id)->get();
+        return view('pages.home',$trees);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show()
     {
         $trees = Tree::where('user_id','=',auth()->user()->id)->get();
     	return view('pages.view_trees',compact('trees'));
@@ -65,10 +82,10 @@ class TreeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
