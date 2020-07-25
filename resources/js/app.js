@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-require('./app');
+require('./home');
 
 /**
  * Next, we will create a fresh React component instance and attach it to
