@@ -18,8 +18,8 @@ class TreeController extends Controller
      */
     public function index()
     {
-        $trees=Tree::where('user_id','=',auth()->user()->id)->get();
-        return view('pages.home',$trees);
+        $trees=Tree::select('*')->where('user_id','=',auth()->user()->id)->get();
+        return view('pages.home',compact('trees'));
     }
 
 
