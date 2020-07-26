@@ -5,16 +5,21 @@ import View from 'ol/View';
 import {toStringHDMS} from 'ol/coordinate';
 import {fromLonLat, toLonLat} from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
+import {Tile,Vector} from 'ol/layer';
 import VectorLayer from 'ol/layer/Vector';
 import OSM from 'ol/source/OSM';
 import {Icon, Style} from 'ol/style';
-import { Feature } from 'ol';
+import { Feature } from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { transform } from 'ol/proj';
 import Vector from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 // import {Tile, Vector as VectorLayer} from 'ol/layer';
 
+
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
 
 console.log(trees)
 var vectorSource= new VectorSource;
@@ -58,43 +63,38 @@ var map = new Map({
 
 // Popup showing the position the user clicked
 var popup = new Overlay({
-  element: document.getElementById('popup'),
-  positioning: 'center',
-  stopEvent: false,
-//   offset: [0, -50]
+  element: document.getElementById('popup')
 });
 map.addOverlay(popup);
 
+// display popup on click
 map.on('click', function(evt) {
-  var element = popup.getElement();
-  var coordinate = evt.coordinate;
-//   var hdms = toStringHDMS(toLonLat(coordinate));
   var feature = map.forEachFeatureAtPixel(evt.pixel,
     function(feature) {
+      console.log(feature.get('name'))
       return feature;
     });
-    if (feature) {
-        console.log(feature.get('name'))
-        var coordinates = feature.getGeometry().getCoordinates();
-        console.log(coordinate)
-        $(element).popover('dispose');
-        popup.setPosition(coordinates);
-        $(element).popover({
-          placement: 'top',
-          html: true,
-          content: feature.get('name')
-        });
-        $(element).popover('show');
-      } else {
-        $(element).popover('dispose');
-      }
+  if (feature) {
+    var coordinates = feature.getGeometry().getCoordinates();
+    popup.setPosition(coordinates);
+    $(element).popover({
+      placement: 'top',
+      html: true,
+      content: feature.get('name')
+    });
+    $(element).popover('show');
+  } else {
+    $(element).popover('dispose');
+  }
 });
-// map.on('pointermove', function(evt) {
-//     map.getTargetElement().style.cursor =
-//         map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
-//   });
-  map.on('pointermove', function(e){
-    var pixel = map.getEventPixel(e.originalEvent);
-    var hit = map.hasFeatureAtPixel(pixel);
-    map.getViewport().style.cursor = hit ? 'pointer' : '';
-  });
+
+// change mouse cursor when over marker
+map.on('pointermove', function(e) {
+  if (e.dragging) {
+    $(element).popover('destroy');
+    return;
+  }
+  var pixel = map.getEventPixel(e.originalEvent);
+  var hit = map.hasFeatureAtPixel(pixel);
+  map.getTarget().style.cursor = hit ? 'pointer' : '';
+});

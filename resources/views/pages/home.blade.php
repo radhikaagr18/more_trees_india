@@ -22,16 +22,9 @@
   </head>
   @include('layouts.navbar')
   <body>
- 
-  <div id="map" class="map"></div>
-    <div style="display: none;">
-      <!-- Clickable label for Vienna -->
-      <a class="overlay" id="vienna" target="_blank" href="http://en.wikipedia.org/wiki/Vienna">Vienna</a>
-      <div id="marker" title="Marker"></div>
-      <!-- Popup -->
-      <div id="popup" title="Welcome to OpenLayers"></div>
-    </div>
-
-    <script type="module" src="{{mix('/js/app.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <div id="map" class="map"><div id="popup"></div></div>
+  <script type="module" src="{{mix('/js/app.js')}}"></script>
   </body>
+   
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  
