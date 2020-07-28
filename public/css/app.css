@@ -74,22 +74,6 @@ body {
   text-align: left;
   background-color: #f8fafc;
 }
-main{
-  /* The image used */
-  background-image: url("./../images/bg.jpg");
-  
-  /* Add the blur effect */
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
-  
-  /* Full height */
-  height: 100%; 
-  
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;

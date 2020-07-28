@@ -8,7 +8,7 @@ import TileLayer from 'ol/layer/Tile';
 import {Tile,Vector} from 'ol/layer';
 import VectorLayer from 'ol/layer/Vector';
 import OSM from 'ol/source/OSM';
-import {Icon, Style,Circle as CircleStyle, Fill, Stroke} from 'ol/style';
+import {Icon, Style} from 'ol/style';
 import { Feature, Geolocation } from 'ol';
 import Point from 'ol/geom/Point';
 import { transform } from 'ol/proj';
@@ -17,6 +17,17 @@ import VectorSource from 'ol/source/Vector';
 import {easeIn, easeOut} from 'ol/easing';
 // import {Tile, Vector as VectorLayer} from 'ol/layer';
 var current_location
+var view=new View({
+  center: [0, 0],
+  zoom: 2
+})
+var geolocation = new Geolocation({
+  // enableHighAccuracy must be set to true to have the heading value.
+  trackingOptions: {
+    enableHighAccuracy: true,
+  },
+  projection: view.getProjection(),
+});
 window.onload = (event) => {
   geolocation.setTracking(true);
   console.log('page is fully loaded');
@@ -33,7 +44,7 @@ var popup = new Overlay({
   },
 });
 console.log(trees)
-var vectorSource= new VectorSource;
+var vectorSource= new VectorSource();
 for(var i=0;i<trees.length;i++){
     var iconFeature=new Feature({
         geometry:new Point(transform([trees[i].longitude,trees[i].latitude],'EPSG:4326', 'EPSG:3857')),
@@ -57,18 +68,23 @@ for(var i=0;i<trees.length;i++){
     vectorSource.addFeature(iconFeature);
 }
 
-var treeslayer=new VectorLayer({
-    source:vectorSource
-})
+// var treeslayer=new Vector({
+//     source:vectorSource
+// })
 var layer = new TileLayer({
   source: new OSM()
 });
-var view=new View({
-  center: [0, 0],
-  zoom: 2
-})
+var map = new Map({
+  target: 'map',
+  layers: [layer ],
+  view: view,
+});
+new VectorLayer({
+  map: map,
+  source: vectorSource,
+});
 
-map.addOverlay(popup);
+
 var element = popup.getElement();
 // display popup on click
 map.on('pointermove', function(event) {
@@ -105,16 +121,8 @@ $(document).click(function (e) {
   if($(e.target).is('.close'))$(element).popover('hide');
 });
 
-var geolocation = new Geolocation({
-  // enableHighAccuracy must be set to true to have the heading value.
-  trackingOptions: {
-    enableHighAccuracy: true,
-  },
-  projection: view.getProjection(),
-});
-
 var positionFeature = new Feature({
-  geometry:new Point(current_location),
+  geometry:new Point([current_location]),
   species:'Current Location',
   created_at:'You are here right now.'
 });
@@ -135,7 +143,7 @@ positionFeature.setStyle(
 
 geolocation.on('change:position', function () {
   current_location = geolocation.getPosition();
-  positionFeature.setGeometry(current_location ? positionFeature.setStyle(current_location_style) : null);
+  positionFeature.setGeometry(current_location ? new Point(current_location) : null);
   view.animate({
     center: current_location,
     duration: 3000,
@@ -150,4 +158,6 @@ new VectorLayer({
     features: [ positionFeature],
   }),
 });
+map.addOverlay(popup);
+
 
