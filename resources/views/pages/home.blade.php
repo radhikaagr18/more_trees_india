@@ -1,5 +1,8 @@
-
+<!DOCTYPE html>
+<html lang="en">
   <head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geolocation</title>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,requestAnimationFrame,Element.prototype.classList,URL"></script>
     <!-- <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script> -->
@@ -22,11 +25,12 @@
       }
     </style>
   </head>
-  @include('layouts.navbar')
   <body>
+  @include('layouts.navbar')
   <div id="map" class="map">
   <div id="popup" class="ol-popup"></div></div>
   <script type="module" src="{{mix('/js/app.js')}}"></script>
   </body>
+  </html>
    
   
