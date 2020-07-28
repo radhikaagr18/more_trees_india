@@ -36,7 +36,7 @@
                 <td>{{ $tree->longitude }}</td>
                 <td>{{ $tree->diameter }}</td>
                 <td>
-                    <img src=src="{{ asset('images/$tree->pic') }}" width="54">
+                    <img src="{{ asset('images') }}/{{ $tree->pic }}" width="54">
                 </td>
             </tr>
         @endforeach

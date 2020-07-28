@@ -24,9 +24,9 @@
             <div class="input-field col s6">
                 <select name="species">
                     <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Azadirachata indica</option>
-                    <option value="2">Ficus religiosa</option>
-                    <option value="3">Cocos nucifera</option>
+                    <option >Azadirachata indica</option>
+                    <option>Ficus religiosa</option>
+                    <option >Cocos nucifera</option>
                 </select>
                 <label>Species</label>
             </div>
