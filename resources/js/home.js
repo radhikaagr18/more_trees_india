@@ -86,7 +86,7 @@ new VectorLayer({
 
 
 var element = popup.getElement();
-// display popup on click
+// display popup on hover
 map.on('pointermove', function(event) {
   var feature = map.getFeaturesAtPixel(event.pixel)[0];
   if (feature) {
@@ -97,7 +97,7 @@ map.on('pointermove', function(event) {
   popup.setPosition(coordinate);
   $(element).popover({
     placement: 'top',
-    // animation: false,
+    animation: false,
     html: true,
     title: feature.get('species')+'<a class="close" href="#");">&times;</a>',
     content:   '<p>Location: '+hdms+'</p><p>Created at: '+feature.get('created_at')
@@ -158,6 +158,10 @@ new VectorLayer({
     features: [ positionFeature],
   }),
 });
+//  $(document).click(function (e) {	var positionFeature = new ol.Feature();
+//   if (($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {	positionFeature.setStyle(new ol.style.Style({
+//       $('#popoverId').popover('hide');
+//   }
 map.addOverlay(popup);
 
 
