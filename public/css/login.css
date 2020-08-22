@@ -71,8 +71,11 @@
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 60%;
-    padding: 20px;
+    padding: 3rem;
     text-align: center;
+    /* margin-top: 1.5rem; */
+    max-height: 35rem;
+    
   }
   main{
       /* The image used */
@@ -92,5 +95,8 @@
   }
   body{
     overflow: hidden;
+  }
+  #exampleModalLongTitle{
+    max-width: 100%;
   }
   
