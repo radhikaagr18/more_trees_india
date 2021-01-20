@@ -7,7 +7,7 @@
 
 <div class="bg-text animated ">
   <h2 class="slideInRight animated">MORE</h2>
-  <h1 style="font-size:50px">I am here to make you plant MORE trees.</h1>
+  <h1>I am here to make you plant MORE trees.</h1>
   <button type="button" class="btn btn-primary slideInRight animated" data-toggle="modal" data-target="#exampleModalCenter" >
   Launch demo modal
     </button>
@@ -89,4 +89,5 @@
     </div>
     </div>
 </div>
+
 @endsection
