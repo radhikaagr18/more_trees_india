@@ -44,7 +44,9 @@
         </nav>
         <main>
             @yield('content')
+            <div class='row'><div class="container">Footer</div> </div>
         </main>
     </div>
+    
 </body>
 </html>

@@ -1,7 +1,7 @@
  /* Google Fonts */
  @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
  .main_body{
-     height:53rem;
+     height:50rem;
      padding-top: 6rem;
  }
  .btn{
@@ -116,24 +116,9 @@
    #exampleModalLongTitle{
      max-width: 100%;
    }
-  
-   .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color:rgb(0,0,0);
-    color: white;
-    text-align: center;
-    
- }
    @media(max-width:850px){
     #exampleModalLongTitle{
     width: 100%;
     }
-     .main_body{
-     height:49rem;
-     padding-top: 4rem;
- }
 }
  
