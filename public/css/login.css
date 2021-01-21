@@ -1,8 +1,8 @@
  /* Google Fonts */
  @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
  .main_body{
-     height:49rem;
-     padding-top: 4rem;
+     height:53rem;
+     padding-top: 6rem;
  }
  .btn{
      border-radius: 3rem !important;
@@ -58,24 +58,44 @@
    }
    
    /* Position text in the middle of the page/image */
-   .bg-text {
-     background-color: rgb(0,0,0); /* Fallback color */
-     background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+   .bg-text1 {  
+     background-color: rgb(0,102,0,0.4); /* Black w/opacity/see-through */
      color: white;
      font-weight: bold;
      border: 3px solid #f1f1f1;
-     position: absolute;
      top: 50%;
      left: 50%;
-     transform: translate(-50%, -50%);
+     transform: translate(0%, 0%);
      z-index: 2;
-     width: 60%;
+     width: 70%;
      padding: 3rem;
      text-align: center;
      /* margin-top: 1.5rem; */
-     max-height: 35rem;
+     max-height: 55rem;
      
    }
+   .modal-content{
+    background-color: rgb(0,0,0,0.8) !important;
+    color: white;
+   }
+   .modalBox {  
+     /* Black w/opacity/see-through */
+    
+    font-weight: bold;
+    /* border: 3px solid #f1f1f1; */
+    /* position: absolute; */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(0%, 0%); */
+    /* z-index: 3; */
+    /* width: 70%; */
+    /* height:35rem; */
+    padding: 3rem;
+    text-align: center;
+    /* margin-top: 1.5rem; */
+    max-height: 55rem;
+    
+  }
    main{
        /* The image used */
    background-image: url("./../images/bg.jpg");
@@ -92,9 +112,7 @@
    background-repeat: no-repeat;
    background-size: cover;
    }
-   body{
-     overflow: hidden;
-   }
+   
    #exampleModalLongTitle{
      max-width: 100%;
    }
@@ -117,102 +135,5 @@
      height:49rem;
      padding-top: 4rem;
  }
- main{
-  /* The image used */
-background-image: url("./../images/bg.jpg");
-
-/* Add the blur effect */
-/* filter: blur(8px);
--webkit-filter: blur(8px); */
-
-/* Full height */
-height: 100%; 
-
-/* Center and scale the image nicely */
-background-position: center;
-background-repeat: no-repeat;
-background-size: fixed;
 }
-    .btn{
-        border-radius: 3rem !important;
-        font-size: 1.2rem;
-        padding:0.3rem 0.8rem;
-      }
-       /* Position text in the middle of the page/image */
-       .bg-text {
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-        color: white;
-        font-weight: bold;
-        border: 3px solid #f1f1f1;
-        position: absolute;
-        top: 40%;
-        font-family: sans-serif;
-        padding:10px;
-        transform: translate(-50%, -50%);
-        z-index: 2;
-         width: 300px;
-        /* margin-top: 1.5rem; */
-        height: 200px;
-        
-      }
-      h1{
-        display: block;
-        font-size: 1.5em;
-        margin-top: 0.67em;
-        margin-bottom: 0.67em;
-        margin-left: 0;
-        margin-right: 0;
-        font-weight: bold;
-      
-      }
-      .typewriter_style{
-        font-family: 'Anonymous Pro', monospace; 
-        position: relative;
-      top: 50%;  
-      /* width: 24em; */
-      margin: 0 auto ;
-      /* border-right: 2px solid rgba(255,255,255,.75); */
-      font-size: 130%;
-      /* text-align: center; */
-      white-space: nowrap;
-      overflow: hidden;
-      
-    }
-    /* Animation */
-  .typewriter_style{
-      animation: typewriter 4s steps(25) 1s 1 normal both,
-                 blinkTextCursor 500ms steps(25) infinite normal;
-    }
-    @keyframes typewriter{
-      from{width: 0;}
-      to{width: 13em;}
-    }
-    @keyframes blinkTextCursor{
-      from{border-right-color: rgba(255,255,255,.75);}
-      to{border-right-color: transparent;}
-    }
-    /* .modal-dialog{
-        width:inherit;
-    } */
-    .slideInRight {
-      animation-name: slideInRight;
-    }
-    .animated {
-      animation-duration: 1s;
-      animation-fill-mode: both;
-    }
-    
-    @keyframes slideInRight {
-      from {
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-      }
-    
-      to {
-        transform: translate3d(0, 0, 0);
-      }
-    }
-    
-    }
-     
+ 

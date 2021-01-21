@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <nav class="teal lighten-2">
     <div class="nav-wrapper container teal lighten-2">
-        <a href="/" class="brand-logo">
+        <a href="bidaal.com" class="brand-logo">
             <img src="{{ asset('images/logo.png') }}" class="brand-logo" width="72" >
         </a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>

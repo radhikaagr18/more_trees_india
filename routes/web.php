@@ -18,9 +18,6 @@ Route::get('/add_trees', function () {return view('pages.add_trees');})->middlew
 Route::get('/view_trees','TreeController@show')->middleware('auth');
 // Route::get('/_trees', function () {return view('pages.add_trees');});
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
 
 Auth::routes();
 
