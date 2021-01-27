@@ -16,7 +16,7 @@
      /* width: 24em; */
      margin: 0 auto ;
      /* border-right: 2px solid rgba(255,255,255,.75); */
-     font-size: 180%;
+     font-size: 160%;
      /* text-align: center; */
      white-space: nowrap;
      overflow: hidden;
@@ -63,15 +63,21 @@
      color: white;
      font-weight: bold;
      border: 3px solid #f1f1f1;
-     top: 50%;
-     left: 50%;
+     /* top: 50%; */
+     /* left: 50%; */
      transform: translate(0%, 0%);
      z-index: 2;
      width: 70%;
      padding: 3rem;
      text-align: center;
-     /* margin-top: 1.5rem; */
-     max-height: 55rem;
+     /* margin-top: 3rem !important; */
+     max-height: 65rem;
+     
+   }
+   @media only screen and (min-width: 768px) {
+     .bg-text1{
+       margin-top: 5rem;
+     }
      
    }
    .modal-content{
@@ -121,4 +127,20 @@
     width: 100%;
     }
 }
- 
+/* .modal{
+  position: absolute;
+   top: 5rem;
+   right: 1rem;
+   bottom: 0;
+   left: 0;
+   overflow: auto;
+   overflow-y: auto;
+} */
+.modal-dialog{
+  margin-top: 8rem;;
+}
+.modal-body{
+  padding: 1.5rem;
+  line-height: 2;
+  font-size: 1.2rem;
+}

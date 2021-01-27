@@ -37,6 +37,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    <button type="button" class="btn btn-primary slideInRight animated" data-toggle="modal" data-target="#exampleModalCenter" >Launch demo modal</button>&nbsp&nbsp
                     <button type="button" class="btn btn-success">MORE</button>
                     
                 </div>
