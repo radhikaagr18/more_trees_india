@@ -17,18 +17,12 @@
             <div class="bg-text1 animated mx-auto">
             <h2 class="slideInRight animated"><b>MORE</b>: <b>M</b>apping of <b>O</b>xygen <b>R</b>esources & <b>E</b>stimation</h2><br><br>
             <h3>Let’s make your natural assets digital <br> First ever platform to map your trees into your own GIS</h3><br>
-            <button type="button" class="btn btn-primary slideInRight animated" data-toggle="modal" data-target="#exampleModalCenter" >
-            Launch demo modal
-                </button>
             </div>
         </div>
         <div class="carousel-item">
             <div class="bg-text1 animated mx-auto">
             <h2 class="slideInRight animated">MORE for better planet</h2>
             <h3>fast surveying, smart cartographic algorithm, automated analytical <br> report and much more for industries </h3><br>
-            <button type="button" class="btn btn-primary slideInRight animated" data-toggle="modal" data-target="#exampleModalCenter" >
-            Launch demo modal
-            </button>
             </div>
         </div>
     </div>

@@ -74,109 +74,109 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // For the select tag to work
-    var sel = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(sel, {});
+    document.addEventListener('DOMContentLoaded', function () {
+        // For the select tag to work
+        var sel = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(sel, {});
 
-    // For the popup
-    var mods = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(mods, {
-        'onOpenEnd': camWorkStart
-    });
-
-    // For the lat and long
-    status = document.getElementsByClassName('status')[0];
-    if (!navigator.geolocation) {
-        status.innerText = 'Geolocation is not supported by your browser';
-    } else {
-        status.innerText = 'Locating…';
-        navigator.geolocation.getCurrentPosition(success, error);
-    }
-    function success(position) {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        document.getElementById('latitude').value = latitude;
-        document.getElementById('longitude').value = longitude;
-        M.updateTextFields();
-    }
-    function error() {
-        status.innerText = 'Unable to retrieve your location';
-    }
-    // For the camera
-});
-
-function camWorkStart() {
-    
-    var width = 320;
-    var height = 0;    
-    video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
-    photo = document.getElementById('photo');
-    startbutton = document.getElementById('startbutton');
-    startup();
-
-    function startup() {
-
-        var streaming = false;
-
-        navigator.mediaDevices.getUserMedia({video: true, audio: false})
-        .then(function(stream) {
-            video.srcObject = stream;
-            video.play();
-        })
-        .catch(function(err) {
-            console.log("An error occurred: " + err);
+        // For the popup
+        var mods = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(mods, {
+            'onOpenEnd': camWorkStart
         });
 
-        video.addEventListener('canplay', function(ev){
-            if (!streaming) {
-                height = video.videoHeight / (video.videoWidth/width);
-                if (isNaN(height)) {
-                    height = width / (4/3);
+        // For the lat and long
+        status = document.getElementsByClassName('status')[0];
+        if (!navigator.geolocation) {
+            status.innerText = 'Geolocation is not supported by your browser';
+        } else {
+            status.innerText = 'Locating…';
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+        function success(position) {
+            const latitude  = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+            M.updateTextFields();
+        }
+        function error() {
+            status.innerText = 'Unable to retrieve your location';
+        }
+        // For the camera
+    });
+
+    function camWorkStart() {
+        
+        var width = 320;
+        var height = 0;    
+        video = document.getElementById('video');
+        canvas = document.getElementById('canvas');
+        photo = document.getElementById('photo');
+        startbutton = document.getElementById('startbutton');
+        startup();
+
+        function startup() {
+
+            var streaming = false;
+
+            navigator.mediaDevices.getUserMedia({video: true, audio: false})
+            .then(function(stream) {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(function(err) {
+                console.log("An error occurred: " + err);
+            });
+
+            video.addEventListener('canplay', function(ev){
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth/width);
+                    if (isNaN(height)) {
+                        height = width / (4/3);
+                    }
+
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
                 }
+            }, false);
 
-                video.setAttribute('width', width);
-                video.setAttribute('height', height);
-                canvas.setAttribute('width', width);
-                canvas.setAttribute('height', height);
-                streaming = true;
-            }
-        }, false);
+            startbutton.addEventListener('click', function(ev){
+                takepicture();
+                ev.preventDefault();
+            }, false);
 
-        startbutton.addEventListener('click', function(ev){
-            takepicture();
-            ev.preventDefault();
-        }, false);
+            clearphoto();
+        }
 
-        clearphoto();
-    }
-
-    function clearphoto() {
-        var context = canvas.getContext('2d');
-        context.fillStyle = "#AAA";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-
-        var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
-    }
-
-    function takepicture() {
-        var context = canvas.getContext('2d');
-        if (width && height) {
-            canvas.width = width;
-            canvas.height = height;
-            context.drawImage(video, 0, 0, width, height);
+        function clearphoto() {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#AAA";
+            context.fillRect(0, 0, canvas.width, canvas.height);
 
             var data = canvas.toDataURL('image/png');
             photo.setAttribute('src', data);
-            photo.setAttribute('value', data);
-            video.srcObject.getVideoTracks().forEach(track => track.stop());
-        } else {
-            clearphoto();
+        }
+
+        function takepicture() {
+            var context = canvas.getContext('2d');
+            if (width && height) {
+                canvas.width = width;
+                canvas.height = height;
+                context.drawImage(video, 0, 0, width, height);
+
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+                photo.setAttribute('value', data);
+                video.srcObject.getVideoTracks().forEach(track => track.stop());
+            } else {
+                clearphoto();
+            }
         }
     }
-}
 
 </script>
 

@@ -16,7 +16,7 @@
      /* width: 24em; */
      margin: 0 auto ;
      /* border-right: 2px solid rgba(255,255,255,.75); */
-     font-size: 160%;
+     font-size: 170%;
      /* text-align: center; */
      white-space: nowrap;
      overflow: hidden;
@@ -59,7 +59,8 @@
    
    /* Position text in the middle of the page/image */
    .bg-text1 {  
-     background-color: rgb(0,102,0,0.4); /* Black w/opacity/see-through */
+     background : rgba(0,102,0,0.6); /* Black w/opacity/see-through */
+     /* opacity:0.4; */
      color: white;
      font-weight: bold;
      border: 3px solid #f1f1f1;
